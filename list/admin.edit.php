@@ -59,7 +59,7 @@ $record = mysqli_fetch_assoc($result);
 
 <h1 class="w3-margin-top w3-margin-bottom">
     <img
-        src="https://cdn.brickmmo.com/icons@1.0.0/mail.png"
+        src="https://cdn.brickmmo.com/icons@1.0.0/list.png"
         height="50"
         style="vertical-align: top"
     />

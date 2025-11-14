@@ -40,7 +40,7 @@ $emails_count = mysqli_num_rows($result);
 
 <h1 class="w3-margin-top w3-margin-bottom">
     <img
-        src="https://cdn.brickmmo.com/icons@1.0.0/mail.png"
+        src="https://cdn.brickmmo.com/icons@1.0.0/list.png"
         height="50"
         style="vertical-align: top"
     />
@@ -105,6 +105,13 @@ $emails_count = mysqli_num_rows($result);
     <?php endwhile; ?>
 
 </table>
+
+<a
+    href="/admin/add"
+    class="w3-button w3-white w3-border"
+>
+    <i class="fa-solid fa-pen-to-square fa-padding-right"></i> Add Email
+</a>
 
 <?php
 
