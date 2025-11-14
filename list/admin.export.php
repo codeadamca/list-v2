@@ -35,12 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     
     // Output CSV
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['ID', 'Email', 'News', 'Socials', 'Advanced', 'Created At', 'Updated At']);
+    fputcsv($output, ['ID', 'Email', 'Hash', 'News', 'Socials', 'Advanced', 'Created At', 'Updated At']);
     
     while ($record = mysqli_fetch_assoc($result)) {
         fputcsv($output, [
             $record['id'],
             $record['email'],
+            $record['hash'],
             $record['news'],
             $record['socials'],
             $record['advanced'],
