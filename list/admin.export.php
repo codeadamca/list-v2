@@ -93,28 +93,29 @@ include('../templates/message.php');
     id="main-form"
 >
 
-    <div class="w3-margin-top">
-        <label style="display: block; margin-bottom: 10px;">
-            <input type="checkbox" name="news" value="yes" checked id="news"> 
-            <strong>News</strong>
-            <br>
-            <small>General updates on the Smart City project, funding, events, and application launches.</small>
-        </label>
+    <label style="display: block; margin-bottom: 10px;">
+        <input type="checkbox" name="news" value="yes" checked id="news"> 
+        <strong>News</strong>
+        <br>
+        General updates on the Smart City project, funding, 
+        events, and application launches.
+    </label>
 
-        <label style="display: block; margin-bottom: 10px;">
-            <input type="checkbox" name="socials" value="yes" checked id="socials"> 
-            <strong>Socials</strong>
-            <br>
-            <small>Social drop-ins for anyone new to LEGO&reg; or LEGO&reg; experts.</small>
-        </label>
+    <label style="display: block; margin-bottom: 10px;">
+        <input type="checkbox" name="socials" value="yes" checked id="socials"> 
+        <strong>Socials</strong>
+        <br>
+        Social drop-ins for anyone new to LEGO&reg; or 
+        LEGO&reg; experts. 
+    </label>
 
-        <label style="display: block; margin-bottom: 10px;">
-            <input type="checkbox" name="advanced" value="yes" checked id="advanced"> 
-            <strong>Advanced</strong>
-            <br>
-            <small>Drop-in sessions for LEGO&reg; experts or aspiring LEGO&reg; experts.</small>
-        </label>
-    </div>
+    <label style="display: block; margin-bottom: 20px;">
+        <input type="checkbox" name="advanced" value="yes" checked id="advanced"> 
+        <strong>Advanced</strong>
+        <br>
+        Drop-in sessions for LEGO&reg; experts or 
+        aspiring LEGO&reg; experts.
+    </label>
 
     <button class="w3-block w3-btn w3-orange w3-text-white w3-margin-top" onclick="return validateMainForm();">
         <i class="fa-solid fa-download fa-padding-right"></i>
