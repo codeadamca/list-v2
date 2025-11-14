@@ -42,41 +42,34 @@ include('../templates/message.php');
         </strong>
     </p>
 
-    <form id="settingsForm" onsubmit="return updateSettings(event);">
-
-        <label style="display: block; margin-bottom: 10px;">
-            <input type="checkbox" name="news" id="news" value="yes" 
-                <?=($record['news'] == 'yes' ? 'checked' : '')?>
-            > <strong>News</strong>
-            <br>
-            General updates on the Smart City project, funding, 
-            events, and application launches.
-        </label>
+    <label style="display: block; margin-bottom: 10px;">
+        <input type="checkbox" name="news" id="news" value="yes" 
+            <?=($record['news'] == 'yes' ? 'checked' : '')?>
+        > <strong>News</strong>
+        <br>
+        General updates on the Smart City project, funding, 
+        events, and application launches.
+    </label>
 
         <label style="display: block; margin-bottom: 10px;">
             <input type="checkbox" name="socials" id="socials" value="yes" 
                 <?=($record['socials'] == 'yes' ? 'checked' : '')?>
             > <strong>Socials</strong>
             <br>
-            Social drop-ins for anyone new to LEGO&trade; or 
-            LEGO&trade; experts. 
-        </label>
-
-        <label style="display: block; margin-bottom: 20px;">
+            Social drop-ins for anyone new to LEGO&reg; or 
+            LEGO&reg; experts. 
+        </label>        <label style="display: block; margin-bottom: 20px;">
             <input type="checkbox" name="advanced" id="advanced" value="yes" 
                 <?=($record['advanced'] == 'yes' ? 'checked' : '')?>
             > <strong>Advanced</strong>
             <br>
-            Drop-in sessions for LEGO&trade; experts or 
-            aspiring LEGO&trade; experts.
-        </label>
+            Drop-in sessions for LEGO&reg; experts or 
+            aspiring LEGO&reg; experts.
+        </label>    <a href="#" onclick="return updateSettings(event);" type="submit" class="w3-button w3-white w3-border">
+        <i class="fa-solid fa-floppy-disk fa-padding-right"></i>
+        Update Settings
+    </a>
 
-        <a href="#" type="submit" class="w3-button w3-white w3-border">
-            <i class="fa-solid fa-floppy-disk fa-padding-right"></i>
-            Update Settings
-        </a>
-
-    </form>
 
 </main>
 
@@ -89,9 +82,16 @@ function updateSettings(event) {
     const advanced = document.getElementById('advanced').checked ? 'yes' : 'no';
     const hash = '<?=$_GET['key']?>';
     
-    const url = `/api/update/hash/${hash}/news/${news}/socials/${socials}/advanced/${advanced}`;
+    const formData = new FormData();
+    formData.append('hash', hash);
+    formData.append('news', news);
+    formData.append('socials', socials);
+    formData.append('advanced', advanced);
     
-    fetch(url)
+    fetch('/api/update', {
+        method: 'POST',
+        body: formData
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {

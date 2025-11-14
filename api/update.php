@@ -2,7 +2,7 @@
 
 $data = array();
 
-if(!isset($_GET['hash']))
+if(!isset($_POST['hash']))
 {
     $data['error'] = 'Hash is required';
     return;
@@ -10,7 +10,7 @@ if(!isset($_GET['hash']))
 
 $query = 'SELECT *
     FROM emails
-    WHERE hash = "'.addslashes($_GET['hash']).'"
+    WHERE hash = "'.addslashes($_POST['hash']).'"
     LIMIT 1';
 $result = mysqli_query($connect, $query);
 
@@ -21,10 +21,10 @@ if(mysqli_num_rows($result) == 0)
 }
 
 $query = 'UPDATE emails SET
-    news = "'.(isset($_GET['news']) && $_GET['news'] == 'yes' ? 'yes' : 'no').'",
-    socials = "'.(isset($_GET['socials']) && $_GET['socials'] == 'yes' ? 'yes' : 'no').'",
-    advanced = "'.(isset($_GET['advanced']) && $_GET['advanced'] == 'yes' ? 'yes' : 'no').'"
-    WHERE hash = "'.addslashes($_GET['hash']).'"
+    news = "'.(isset($_POST['news']) && $_POST['news'] == 'yes' ? 'yes' : 'no').'",
+    socials = "'.(isset($_POST['socials']) && $_POST['socials'] == 'yes' ? 'yes' : 'no').'",
+    advanced = "'.(isset($_POST['advanced']) && $_POST['advanced'] == 'yes' ? 'yes' : 'no').'"
+    WHERE hash = "'.addslashes($_POST['hash']).'"
     LIMIT 1';
 mysqli_query($connect, $query);
 
