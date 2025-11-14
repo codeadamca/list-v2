@@ -5,30 +5,34 @@ function navigation_array($selected = false)
 
     $navigation = [
         [
-            'title' => 'Events',
+            'title' => 'Email List',
             'sections' => [
                 [
-                    'title' => 'Events',
+                    'title' => 'Email List',
                     'id' => 'admin-content',
                     'pages' => [
                         [
-                            'icon' => 'events',
+                            'icon' => 'list',
                             'url' => '/admin/dashboard',
-                            'title' => 'Events',
+                            'title' => 'Email List',
                             'sub-pages' => [
                                 [
                                     'title' => 'Dashboard',
                                     'url' => '/admin/dashboard',
                                     'colour' => 'red',
                                 ],[
-                                    'title' => 'Add Event',
+                                    'title' => 'Add Email',
                                     'url' => '/admin/add',
+                                    'colour' => 'red',
+                                ],[
+                                    'title' => 'Export List',
+                                    'url' => '/admin/export',
                                     'colour' => 'red',
                                 ],[
                                     'br' => '---',
                                 ],[
-                                    'title' => 'Visit Events App',
-                                    'url' => 'https://events.brickmmo.com',
+                                    'title' => 'Visit Email List App',
+                                    'url' => 'https://list.brickmmo.com',
                                     'colour' => 'orange',
                                     'icon' => 'fa-solid fa-arrow-up-right-from-square',
                                 ],[
