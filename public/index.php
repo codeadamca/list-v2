@@ -76,21 +76,6 @@ if(!count($parts))
 }
 
 /**
- * ****************************************
- * Custom route rule.
- */
-if(is_numeric($parts[0]))
-{
-
-    include('../qr/redirect.php');
-    exit;
-
-}
-/**
- * ****************************************
- */
-
-/**
  * If the request is an ajax request. 
  */
 if($parts[0] == 'ajax')
