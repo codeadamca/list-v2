@@ -28,12 +28,12 @@ include('../templates/message.php');
             placeholder="email@address.com" 
             id="email" 
             name="email"
-            style="max-width: 300px; margin: auto; text-align: center;">
+            style="max-width: 400px; margin: auto; text-align: center;">
 
         <a
             href="#" 
             class="w3-button w3-white w3-border w3-margin-bottom"
-            style="max-width: 300px; width: 100%;"
+            
             onclick="return validateForm();">
             <i class="fa-solid fa-envelope"></i> Submit
         </a>

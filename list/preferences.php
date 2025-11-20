@@ -1,6 +1,12 @@
 <?php
 
 
+if(!isset($_GET['key']))
+{
+    message_set('Email Error', 'Missing email preferences hash.');
+    header_redirect('/signup');
+}
+
 $query = 'SELECT *
     FROM emails
     WHERE hash = "'.$_GET['key'].'"
@@ -9,6 +15,7 @@ $result = mysqli_query($connect, $query);
 
 if(mysqli_num_rows($result) == 0)
 {
+    message_set('Email Error', 'Invalid email preferences hash provided.');
     header_redirect('/signup');
 }
 
@@ -51,23 +58,30 @@ include('../templates/message.php');
         events, and application launches.
     </label>
 
-        <label style="display: block; margin-bottom: 10px;">
-            <input type="checkbox" name="socials" id="socials" value="yes" 
-                <?=($record['socials'] == 'yes' ? 'checked' : '')?>
-            > <strong>Socials</strong>
-            <br>
-            Social drop-ins for anyone new to LEGO&reg; or 
-            LEGO&reg; experts. 
-        </label>        <label style="display: block; margin-bottom: 20px;">
-            <input type="checkbox" name="advanced" id="advanced" value="yes" 
-                <?=($record['advanced'] == 'yes' ? 'checked' : '')?>
-            > <strong>Advanced</strong>
-            <br>
-            Drop-in sessions for LEGO&reg; experts or 
-            aspiring LEGO&reg; experts.
-        </label>    <a href="#" onclick="return updateSettings(event);" type="submit" class="w3-button w3-white w3-border">
+    <label style="display: block; margin-bottom: 10px;">
+        <input type="checkbox" name="socials" id="socials" value="yes" 
+            <?=($record['socials'] == 'yes' ? 'checked' : '')?>
+        > <strong>Socials</strong>
+        <br>
+        Social drop-ins for anyone new to LEGO&reg; or 
+        LEGO&reg; experts. 
+    </label>        <label style="display: block; margin-bottom: 20px;">
+        <input type="checkbox" name="advanced" id="advanced" value="yes" 
+            <?=($record['advanced'] == 'yes' ? 'checked' : '')?>
+        > <strong>Advanced</strong>
+        <br>
+        Drop-in sessions for LEGO&reg; experts or 
+        aspiring LEGO&reg; experts.
+    </label>    
+    
+    <a href="#" onclick="return updateSettings(event);" type="submit" class="w3-button w3-white w3-border">
         <i class="fa-solid fa-floppy-disk fa-padding-right"></i>
         Update Settings
+    </a>
+
+    <a href="/action/unsubscribe/<?=$_GET['key']?>" class="w3-button w3-white w3-border">
+        <i class="fa-solid fa-circle-xmark fa-padding-right"></i>
+        Unsubscribe All
     </a>
 
 
