@@ -79,7 +79,7 @@ include('../templates/message.php');
         Update Settings
     </a>
 
-    <a href="/action/unsubscribe/<?=$_GET['key']?>" class="w3-button w3-white w3-border">
+    <a href="<?=ENV_DOMAIN?>/action/unsubscribe/<?=$_GET['key']?>" class="w3-button w3-white w3-border">
         <i class="fa-solid fa-circle-xmark fa-padding-right"></i>
         Unsubscribe All
     </a>

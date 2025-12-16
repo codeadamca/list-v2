@@ -78,7 +78,7 @@ include('../templates/message.php');
     Mailing List
 </h1>
 <p>
-    <a href="/admin/dashboard">Mailing List</a> / 
+    <a href="<?=ENV_DOMAIN?>/admin/dashboard">Mailing List</a> / 
     Export Emails
 </p>
 

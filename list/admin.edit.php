@@ -66,7 +66,7 @@ $record = mysqli_fetch_assoc($result);
     Mailing List
 </h1>
 <p>
-    <a href="/admin/dashboard">Mailing List</a> / 
+    <a href="<?=ENV_DOMAIN?>/admin/dashboard">Mailing List</a> / 
     Edit Email
 </p>
 

@@ -92,7 +92,7 @@ $emails_count = mysqli_num_rows($result);
                 <?php endif; ?>
             </td>
             <td>
-                <a href="/admin/edit/<?=$record['id'] ?>">
+                <a href="<?=ENV_DOMAIN?>/admin/edit/<?=$record['id'] ?>">
                     <i class="fa-solid fa-pencil"></i>
                 </a>
             </td>
@@ -107,7 +107,7 @@ $emails_count = mysqli_num_rows($result);
 </table>
 
 <a
-    href="/admin/add"
+    href="<?=ENV_DOMAIN?>/admin/add"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> Add Email
