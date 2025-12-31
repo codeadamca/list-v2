@@ -5,7 +5,7 @@ admin_check();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
-    // Build WHERE clause based on selected checkboxes
+
     $conditions = [];
     
     if (isset($_POST['news']) && $_POST['news'] == 'yes') {
@@ -37,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $output = fopen('php://output', 'w');
     fputcsv($output, ['ID', 'Email', 'Hash', 'News', 'Socials', 'Advanced', 'Created At', 'Updated At']);
     
-    while ($record = mysqli_fetch_assoc($result)) {
+    while ($record = mysqli_fetch_assoc($result)) 
+    {
+
         fputcsv($output, [
             $record['id'],
             $record['email'],
@@ -48,10 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             $record['created_at'],
             $record['updated_at']
         ]);
+
     }
     
     fclose($output);
     exit;
+
 }
 
 define('APP_NAME', 'Mailing List');
@@ -63,7 +67,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 ?>
@@ -76,6 +79,7 @@ include('../templates/message.php');
     />
     Mailing List
 </h1>
+
 <p>
     <a href="<?=ENV_DOMAIN?>/admin/dashboard">Mailing List</a> / 
     Export Emails
@@ -87,7 +91,6 @@ include('../templates/message.php');
 
 <p>Select which mailing lists to export:</p>
 
-<!-- Export form -->
 <form
     method="post"
     id="main-form"
@@ -146,6 +149,5 @@ include('../templates/message.php');
 <?php
 
 include('../templates/main_footer.php');
+include('../templates/debug.php');
 include('../templates/html_footer.php');
-
-?>

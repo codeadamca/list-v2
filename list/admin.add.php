@@ -9,17 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     // Basic serverside validation
     if (!validate_blank($_POST['email']) || !validate_email($_POST['email']))
     {
+
         message_set('Email Error', 'There was an error with the provided email.', 'red');
         header_redirect('/admin/dashboard');
+
     }
 
     // Check if email already exists
     $query = 'SELECT id FROM emails WHERE email = "'.addslashes($_POST['email']).'" LIMIT 1';
     $result = mysqli_query($connect, $query);
     
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0) 
+    {
+
         message_set('Email Error', 'This email already exists in the system.', 'red');
         header_redirect('/admin/dashboard');
+
     }
 
     // Save email details to the database
@@ -45,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     message_set('Email Success', 'Email has been successfully added.');
     header_redirect('/admin/dashboard');
+
 }
 
 define('APP_NAME', 'Mailing List');
@@ -56,7 +62,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 ?>
@@ -69,6 +74,7 @@ include('../templates/message.php');
     />
     Mailing List
 </h1>
+
 <p>
     <a href="<?=ENV_DOMAIN?>/admin/dashboard">Mailing List</a> / 
     Add Email
@@ -149,6 +155,5 @@ include('../templates/message.php');
 <?php
 
 include('../templates/main_footer.php');
+include('../templates/debug.php');
 include('../templates/html_footer.php');
-
-?>

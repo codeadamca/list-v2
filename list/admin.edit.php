@@ -7,8 +7,10 @@ if(
     !isset($_GET['key']) || 
     !is_numeric($_GET['key']))
 {
+
     message_set('Email Error', 'There was an error with the provided email.');
     header_redirect('/admin/dashboard');
+
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -16,8 +18,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
     // Basic serverside validation
     if (!validate_blank($_POST['email']) || !validate_email($_POST['email']))
     {
+
         message_set('Email Error', 'There was an error with the provided email.', 'red');
         header_redirect('/admin/dashboard');
+
     }
     
     $query = 'UPDATE emails SET
@@ -44,7 +48,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 $query = 'SELECT *
@@ -64,6 +67,7 @@ $record = mysqli_fetch_assoc($result);
     />
     Mailing List
 </h1>
+
 <p>
     <a href="<?=ENV_DOMAIN?>/admin/dashboard">Mailing List</a> / 
     Edit Email
@@ -73,7 +77,6 @@ $record = mysqli_fetch_assoc($result);
 
 <h2>Edit Email: <?=$record['email']?></h2>
 
-<!-- Edit form -->
 <form
     method="post"
     novalidate
@@ -146,5 +149,5 @@ $record = mysqli_fetch_assoc($result);
 <?php
 
 include('../templates/main_footer.php');
+include('../templates/debug.php');
 include('../templates/html_footer.php');
-

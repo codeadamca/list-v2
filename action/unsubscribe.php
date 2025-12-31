@@ -2,8 +2,10 @@
 
 if(!isset($_GET['key']))
 {
+
     message_set('Email Error', 'Missing email preferences hash.');
     header_redirect('/signup');
+
 }
 
 $query = 'SELECT *
@@ -14,8 +16,10 @@ $result = mysqli_query($connect, $query);
 
 if(mysqli_num_rows($result) == 0)
 {
+
     message_set('Email Error', 'Invalid email preferences hash provided.');
     header_redirect('/signup');
+    
 }
 
 $record = mysqli_fetch_assoc($result);

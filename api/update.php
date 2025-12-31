@@ -4,8 +4,10 @@ $data = array();
 
 if(!isset($_POST['hash']))
 {
+
     $data['error'] = 'Hash is required';
     return;
+    
 }
 
 $query = 'SELECT *
@@ -16,8 +18,10 @@ $result = mysqli_query($connect, $query);
 
 if(mysqli_num_rows($result) == 0)
 {
+
     $data['error'] = 'Invalid hash';
     return;
+
 }
 
 $query = 'UPDATE emails SET

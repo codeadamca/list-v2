@@ -5,6 +5,7 @@ admin_check();
 
 if (isset($_GET['delete'])) 
 {
+
     $query = 'DELETE FROM emails 
         WHERE id = '.$_GET['delete'].'
         LIMIT 1';
@@ -12,6 +13,7 @@ if (isset($_GET['delete']))
 
     message_set('Delete Success', 'Email has been deleted.');
     header_redirect('/admin/dashboard');
+
 }
 
 define('APP_NAME', 'Mailing List');
@@ -23,7 +25,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');    
 
 $query = 'SELECT * 

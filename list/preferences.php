@@ -3,8 +3,10 @@
 
 if(!isset($_GET['key']))
 {
+
     message_set('Email Error', 'Missing email preferences hash.');
     header_redirect('/signup');
+
 }
 
 $query = 'SELECT *
@@ -15,8 +17,10 @@ $result = mysqli_query($connect, $query);
 
 if(mysqli_num_rows($result) == 0)
 {
+
     message_set('Email Error', 'Invalid email preferences hash provided.');
     header_redirect('/signup');
+
 }
 
 $record = mysqli_fetch_assoc($result);
@@ -33,94 +37,93 @@ include('../templates/message.php');
 
 ?>
 
-<main>
+<div class="w3-center">
+    <h1>List Preferences</h1>
+</div>
 
-    <div class="w3-center">
-        <h1>List Preferences</h1>
-    </div>
+<hr>
 
-    <hr>
+<p>
+    You are updating settings for:
+    <br>
+    <strong>
+        <?=$record['email']?>
+    </strong>
+</p>
 
-    <p>
-        You are updating settings for:
-        <br>
-        <strong>
-            <?=$record['email']?>
-        </strong>
-    </p>
+<label style="display: block; margin-bottom: 10px;">
+    <input type="checkbox" name="news" id="news" value="yes" 
+        <?=($record['news'] == 'yes' ? 'checked' : '')?>
+    > <strong>News</strong>
+    <br>
+    General updates on the Smart City project, funding, 
+    events, and application launches.
+</label>
 
-    <label style="display: block; margin-bottom: 10px;">
-        <input type="checkbox" name="news" id="news" value="yes" 
-            <?=($record['news'] == 'yes' ? 'checked' : '')?>
-        > <strong>News</strong>
-        <br>
-        General updates on the Smart City project, funding, 
-        events, and application launches.
-    </label>
+<label style="display: block; margin-bottom: 10px;">
+    <input type="checkbox" name="socials" id="socials" value="yes" 
+        <?=($record['socials'] == 'yes' ? 'checked' : '')?>
+    > <strong>Socials</strong>
+    <br>
+    Social drop-ins for anyone new to LEGO&reg; or 
+    LEGO&reg; experts. 
+</label>        <label style="display: block; margin-bottom: 20px;">
+    <input type="checkbox" name="advanced" id="advanced" value="yes" 
+        <?=($record['advanced'] == 'yes' ? 'checked' : '')?>
+    > <strong>Advanced</strong>
+    <br>
+    Drop-in sessions for LEGO&reg; experts or 
+    aspiring LEGO&reg; experts.
+</label>    
 
-    <label style="display: block; margin-bottom: 10px;">
-        <input type="checkbox" name="socials" id="socials" value="yes" 
-            <?=($record['socials'] == 'yes' ? 'checked' : '')?>
-        > <strong>Socials</strong>
-        <br>
-        Social drop-ins for anyone new to LEGO&reg; or 
-        LEGO&reg; experts. 
-    </label>        <label style="display: block; margin-bottom: 20px;">
-        <input type="checkbox" name="advanced" id="advanced" value="yes" 
-            <?=($record['advanced'] == 'yes' ? 'checked' : '')?>
-        > <strong>Advanced</strong>
-        <br>
-        Drop-in sessions for LEGO&reg; experts or 
-        aspiring LEGO&reg; experts.
-    </label>    
-    
-    <a href="#" onclick="return updateSettings(event);" type="submit" class="w3-button w3-white w3-border">
-        <i class="fa-solid fa-floppy-disk fa-padding-right"></i>
-        Update Settings
-    </a>
+<a href="#" onclick="return updateSettings(event);" type="submit" class="w3-button w3-white w3-border">
+    <i class="fa-solid fa-floppy-disk fa-padding-right"></i>
+    Update Settings
+</a>
 
-    <a href="<?=ENV_DOMAIN?>/action/unsubscribe/<?=$_GET['key']?>" class="w3-button w3-white w3-border">
-        <i class="fa-solid fa-circle-xmark fa-padding-right"></i>
-        Unsubscribe All
-    </a>
-
-
-</main>
+<a href="<?=ENV_DOMAIN?>/action/unsubscribe/<?=$_GET['key']?>" class="w3-button w3-white w3-border">
+    <i class="fa-solid fa-circle-xmark fa-padding-right"></i>
+    Unsubscribe All
+</a>
 
 <script>
-function updateSettings(event) {
-    event.preventDefault();
-    
-    const news = document.getElementById('news').checked ? 'yes' : 'no';
-    const socials = document.getElementById('socials').checked ? 'yes' : 'no';
-    const advanced = document.getElementById('advanced').checked ? 'yes' : 'no';
-    const hash = '<?=$_GET['key']?>';
-    
-    const formData = new FormData();
-    formData.append('hash', hash);
-    formData.append('news', news);
-    formData.append('socials', socials);
-    formData.append('advanced', advanced);
-    
-    fetch('/api/update', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alertModal('Settings updated successfully!');
-            } else {
-                alertModal('Error: ' + (data.error || 'Failed to update settings'));
-            }
+
+    function updateSettings(event) {
+
+        event.preventDefault();
+        
+        const news = document.getElementById('news').checked ? 'yes' : 'no';
+        const socials = document.getElementById('socials').checked ? 'yes' : 'no';
+        const advanced = document.getElementById('advanced').checked ? 'yes' : 'no';
+        const hash = '<?=$_GET['key']?>';
+        
+        const formData = new FormData();
+        formData.append('hash', hash);
+        formData.append('news', news);
+        formData.append('socials', socials);
+        formData.append('advanced', advanced);
+        
+        fetch('/api/update', {
+            method: 'POST',
+            body: formData
         })
-        .catch(error => {
-            alertModal('Error: Failed to update settings');
-            console.error('Error:', error);
-        });
-    
-    return false;
-}
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alertModal('Settings updated successfully!');
+                } else {
+                    alertModal('Error: ' + (data.error || 'Failed to update settings'));
+                }
+            })
+            .catch(error => {
+                alertModal('Error: Failed to update settings');
+                console.error('Error:', error);
+            });
+        
+        return false;
+        
+    }
+
 </script>
 
 <?php

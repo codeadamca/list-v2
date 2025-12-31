@@ -11,38 +11,36 @@ include('../templates/main_header.php');
 include('../templates/message.php');
 
 ?>
-
-<main>
     
-    <div class="w3-center">
-        <h1>BrickMMO Email List</h1>
-    </div>
+<div class="w3-center">
+    <h1>BrickMMO Email List</h1>
+</div>
 
-    <hr>
+<hr>
 
-    <div class="w3-container w3-center">
+<div class="w3-container w3-center">
 
-        <input 
-            class="w3-input w3-border w3-margin-bottom" 
-            type="text" 
-            placeholder="email@address.com" 
-            id="email" 
-            name="email"
-            style="max-width: 400px; margin: auto; text-align: center;">
+    <input 
+        class="w3-input w3-border w3-margin-bottom" 
+        type="text" 
+        placeholder="email@address.com" 
+        id="email" 
+        name="email"
+        style="max-width: 400px; margin: auto; text-align: center;">
 
-        <a
-            href="#" 
-            class="w3-button w3-white w3-border w3-margin-bottom"
-            
-            onclick="return validateForm();">
-            <i class="fa-solid fa-envelope"></i> Submit
-        </a>
+    <a
+        href="#" 
+        class="w3-button w3-white w3-border w3-margin-bottom"
+        
+        onclick="return validateForm();">
+        <i class="fa-solid fa-envelope"></i> Submit
+    </a>
 
-        <div id="email-error" style="color: #f00;"></div>
+    <div id="email-error" style="color: #f00;"></div>
 
-    </div>
+</div>
 
-    <script>
+<script>
 
     function validateForm() {
         let errors = 0;
@@ -78,9 +76,7 @@ include('../templates/message.php');
         
     }
 
-    </script>
-
-</main>
+</script>
 
 <?php
 
